@@ -10,14 +10,19 @@ def main():
     kk_img = pg.transform.flip(kk_img, True, False)
     kk_imgs = [kk_img, pg.transform.rotozoom(kk_img, 10, 1.0)]
     tmr = 0
-
+    cnt = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-
+        
+        
         tmr += 1
-        kk_t = tmr % 2
-        screen.blit(bg_img, [0, 0])
+        if tmr % 10 == 1:    
+            cnt += 1
+            kk_t = cnt % 2
+        x = tmr%1600
+        screen.blit(bg_img, [-x, 0])
+        screen.blit(bg_img, [1600-x, 0])
         screen.blit(kk_imgs[kk_t], [300, 200])
         pg.display.update()
         clock.tick(100)
